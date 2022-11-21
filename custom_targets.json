@@ -1,0 +1,11 @@
+{
+  "L452RE_SIMPLE": {
+    "inherits": ["NUCLEO_L452RE_P"],
+    "macros_add": ["MY_CUSTOM_DEFINE=5"],
+    "device_name": "STM32L452RETx"
+  },
+  "L452RE_CUSTOM_PINMAP": {
+    "inherits": ["MCU_STM32L452xE"],
+    "device_name": "STM32L452RETx"
+  }
+}
