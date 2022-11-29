@@ -41,7 +41,7 @@ target_link_libraries(mbed-l452re-simple INTERFACE mbed-nucleo-l452re-p)
 # First, we need to create the target and add the source and include files to it.
 # This mirrors the logic in TARGET_STM32L452xE/TARGET_NUCLEO_L452RE_P/CMakeLists.txt.
 # Note that, for internal CMake reasons, all custom targets must be created as INTERFACE
-# targets.
+# targets and have their sources added as INTERFACE sources.
 add_library(mbed-l452re-custom-pinmap INTERFACE)
 target_sources(mbed-l452re-custom-pinmap INTERFACE L452RE_CUSTOM_PINMAP/PeripheralPins.c)
 target_include_directories(mbed-l452re-custom-pinmap INTERFACE L452RE_CUSTOM_PINMAP)
@@ -49,3 +49,20 @@ target_include_directories(mbed-l452re-custom-pinmap INTERFACE L452RE_CUSTOM_PIN
 # Now, we can link the mbed-stm32l452xe target, which pulls in all the existing STM32L452RE headers,
 # linker scripts, and code.
 target_link_libraries(mbed-l452re-custom-pinmap INTERFACE mbed-stm32l452xe)
+
+# Part 2: L452RE_CUSTOM_CLOCK ---------------------------------------------------------------
+
+# In this target, we want to override system_clock.c from Mbed with our own clock config file.
+# This file is part of the mbed-stm32l452xe target, so we want to remove it from there
+# Mbed has a dedicated function for this, mbed_disable_mcu_target_file().  This function takes
+# the target and the filename to remove.
+# Note: We only want to call this function when the project is actually configured for the
+# L452RE_CUSTOM_CLOCK target.
+if("${MBED_TARGET}" STREQUAL "L452RE_CUSTOM_CLOCK")
+	mbed_disable_mcu_target_file(mbed-stm32l452xe system_clock.c)
+endif()
+
+# Now, we can add our custom target that includes our own clock file.
+add_library(mbed-l452re-custom-clock INTERFACE)
+target_sources(mbed-l452re-custom-clock INTERFACE L452RE_CUSTOM_CLOCK/system_clock.c)
+target_link_libraries(mbed-l452re-custom-clock INTERFACE mbed-nucleo-l452re-p)

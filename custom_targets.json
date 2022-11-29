@@ -7,5 +7,9 @@
   "L452RE_CUSTOM_PINMAP": {
     "inherits": ["MCU_STM32L452xE"],
     "device_name": "STM32L452RETx"
+  },
+  "L452RE_CUSTOM_CLOCK": {
+    "inherits": ["NUCLEO_L452RE_P"],
+    "device_name": "STM32L452RETx"
   }
 }
