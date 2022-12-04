@@ -31,4 +31,4 @@ jobs:
         run: |
             mkdir build && cd build
             cmake .. -GNinja -DMBED_TARGET=${{ matrix.mbed_target }}
-            ninja
+            ninja mbed-os # need to build mbed-os explicitly, or it will not be compiled because there are no executables that use it.
