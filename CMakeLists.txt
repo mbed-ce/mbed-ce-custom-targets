@@ -3,28 +3,28 @@ cmake_policy(VERSION 3.19)
 
 #### Initialize Mbed OS build system. ####
 ######################################################################################################
-### Block of including .json files. Files of this block must be included before the app.cmake
+### Block of including .json5 files. Files of this block must be included before the app.cmake
 
-#[[ Set path of mbed_app.json (necessary everytime if mbed_app.json is in project) ]]
+#[[ Set path of mbed_app.json (necessary everytime if mbed_app.json5 is in project) ]]
 set(MBED_APP_JSON_PATH mbed_app.json5)
 
 ###--------------------------------------------------------------------------------------------------- 
-#[[ This part is intended to custom targets and activates the custom_targets.json 
+#[[ This part is intended to custom targets5 and activates the custom_targets.json5 
 and upload method config otherwise functions below should be commented ]]
 
-#[[ Here set path for custom_targets.json (this is our default) ]]
+#[[ Here set path for custom_targets.json5 (this is our default) ]]
  set(CUSTOM_TARGETS_JSON_PATH custom_targets/custom_targets.json5) 
-
- #[[ Note: For custom target you need also an upload method and we have few options how you can do that
-    - use the variable CUSTOM_UPLOAD_CFG_PATH below
-    - use default expected path for custom targets upload methods where you create your own config
-      MY_PROJECT/custom_targets/upload_method_cfg
-
-    For regular targets we have note you an check for an insperation
-    https://github.com/mbed-ce/mbed-os/tree/master/targets/upload_method_cfg ]]
 
 #[[ Here you can set path for custom upload config .cmake (optional example) ]]
 # set(CUSTOM_UPLOAD_CFG_PATH ${CMAKE_SOURCE_DIR}/${MBED_TARGET}/${MBED_TARGET}.cmake)
+
+#[[ Note: For custom target you need also an upload method and we have few options how you can do that
+    - use the variable CUSTOM_UPLOAD_CFG_PATH below
+    - use default expected path for custom targets upload methods where you create your own config
+      MY_PROJECT/custom_targets/upload_method_cfg
+    - of course you can do it by your self dierectly via cmake in this file
+
+    For regular targets we use mbed-os/tree/master/targets/upload_method_cfg ]]
 
 ### End of block
 ######################################################################################################
@@ -59,9 +59,7 @@ add_executable(main main.cpp)
 
 ######################################################################################################
 ### Link libraries block
-
-#[[For more about this configuraion visit wiki page
-https://github.com/mbed-ce/mbed-os/wiki/MbedOS-configuration#configuration-via-cmake-files]]
+#[[For more about this configuraion visit wiki page MbedOS-configuration ]]
 
 #[[link MbedOS and its libraries (necessary everytime)]]
 target_link_libraries(main  mbed-os) 

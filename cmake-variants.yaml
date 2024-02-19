@@ -14,10 +14,14 @@ buildType:
       long: Optimize generated code
       buildType: Release
 board:
-  default: L452RE_CUSTOM_PINMAP
+  # Fill name of your targer which has to corespond to
+  # target name in custom_targets.json5 file
+  default: L452RE_SIMPLE
   choices:
     YOUR_MBED_TARGET:
-      short: L452RE_CUSTOM_PINMAP
+      short: L452RE_SIMPLE
       settings:
-        MBED_TARGET: L452RE_CUSTOM_PINMAP    ## One name of targer in custom_targets.json5 file
-        UPLOAD_METHOD: STM32CUBE  ## NONE, MBED, STLINK, JLINK, PYOCD, OPENOCD, STM32CUBE
+        MBED_TARGET: L452RE_SIMPLE   
+        # Fill your upload method
+        # variants are: NONE, MBED, STLINK, JLINK, PYOCD, OPENOCD, STM32CUBE
+        UPLOAD_METHOD: STM32CUBE         
