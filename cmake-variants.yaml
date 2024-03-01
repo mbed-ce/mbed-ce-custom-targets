@@ -22,6 +22,8 @@ board:
       short: L452RE_SIMPLE
       settings:
         MBED_TARGET: L452RE_SIMPLE   
-        # Fill your upload method
-        # variants are: NONE, MBED, STLINK, JLINK, PYOCD, OPENOCD, STM32CUBE
+        # Fill your upload method according to variants below
+        # - universal: NONE, MBED, JLINK, PYOCD, OPENOCD
+        # - target specific: STLINK, STM32CUBE, LINKSERVER, PICOTOOL, ARDUINO_BOSSAC
+        # For more visit - https://github.com/mbed-ce/mbed-os/wiki/Upload-Methods#upload-method-list
         UPLOAD_METHOD: STM32CUBE         
