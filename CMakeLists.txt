@@ -9,8 +9,8 @@ cmake_policy(VERSION 3.19)
 set(MBED_APP_JSON_PATH mbed_app.json5)
 
 ###--------------------------------------------------------------------------------------------------- 
-#[[ This part is intended to custom targets5 and activates the custom_targets.json5 
-and upload method config otherwise functions below should be commented ]]
+#[[ This part is dedicated for custom targets only! Settings below activate targets from
+    custom_targets.json5 and upload method config, otherwise functions below should be commented. ]]
 
 #[[ Here set path for custom_targets.json5 (this is our default) ]]
  set(CUSTOM_TARGETS_JSON_PATH custom_targets/custom_targets.json5) 
@@ -19,13 +19,12 @@ and upload method config otherwise functions below should be commented ]]
 # set(CUSTOM_UPLOAD_CFG_PATH ${CMAKE_SOURCE_DIR}/${MBED_TARGET}/${MBED_TARGET}.cmake)
 
 #[[ Note: For custom target you need also an upload method and we have few options how you can do that
-    - use the variable CUSTOM_UPLOAD_CFG_PATH below
+    - use the variable CUSTOM_UPLOAD_CFG_PATH above
     - use default expected path for custom targets upload methods where you create your own config
       MY_PROJECT/custom_targets/upload_method_cfg
-    - of course you can do it by your self dierectly via cmake in this file
-
-    For regular targets we use mbed-os/tree/master/targets/upload_method_cfg ]]
-
+    - of course you can do it by yourself directly via cmake in this file
+   Fro more visit https://github.com/mbed-ce/mbed-os/wiki/Upload-Methods ]]
+   
 ### End of block
 ######################################################################################################
 
@@ -35,8 +34,8 @@ include(mbed-os/tools/cmake/app.cmake)
 ######################################################################################################
 ### Block of including project folders
 
-#[[ In case of custom targets must be the folder included before mbed-os subdirectory
-otherwise should be the next line commented]]
+#[[ If using a custom target, the subdirectory containing the custom target must be included before 
+    the mbed-os subdir, otherwise should be the next line commented]]
 add_subdirectory(custom_targets)
 
 ###--------------------------------------------------------------------------------------------------
@@ -57,6 +56,9 @@ project(mbed-ce-custom-targets)
 ### add executable (necessary everytime)
 add_executable(main main.cpp)
 
+### Set post build (necessary everytime)
+mbed_set_post_build(main)
+
 ######################################################################################################
 ### Link libraries block
 #[[For more about this configuraion visit wiki page MbedOS-configuration ]]
@@ -69,9 +71,6 @@ target_link_libraries(main  mbed-os)
 
 ### End of block
 ######################################################################################################
-
-### Set post build (necessary everytime)
-mbed_set_post_build(main)
 
 ### Build finalize does necessary configuration for debug in most cases (necessary everytime)
 mbed_finalize_build()
