@@ -1,0 +1,29 @@
+buildType:
+  default: Develop
+  choices:
+    Develop:
+      short: Develop
+      long: Emit debug information but also optimize
+      buildType: Develop
+    Debug:
+      short: Debug
+      long: Emit debug information and don't optimize
+      buildType: Debug
+    Release:
+      short: Release
+      long: Optimize generated code
+      buildType: Release
+board:
+  # Fill name of your targer which has to corespond to
+  # target name in custom_targets.json5 file
+  default: L452RE_SIMPLE
+  choices:
+    YOUR_MBED_TARGET:
+      short: L452RE_SIMPLE
+      settings:
+        MBED_TARGET: L452RE_SIMPLE   
+        # Fill your upload method according to variants below
+        # - universal: NONE, MBED, JLINK, PYOCD, OPENOCD
+        # - target specific: STLINK, STM32CUBE, LINKSERVER, PICOTOOL, ARDUINO_BOSSAC
+        # For more visit - https://github.com/mbed-ce/mbed-os/wiki/Upload-Methods#upload-method-list
+        UPLOAD_METHOD: STM32CUBE         

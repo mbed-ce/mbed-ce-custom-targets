@@ -1,6 +1,6 @@
 ## Mbed CE Custom Targets Example
 
-This project shows how to use Mbed OS Community Edition to create custom targets.  
+This project shows how to use Mbed OS Community Edition to create custom targets and also defines the standard structure of custom target project from Mbed CE perspective.
 
 This repo includes three different custom targets you can use based on the `NUCLEO_L452RE_P` target.  (No real reason it's this target in particular, it's just a board I happen to use).
 
@@ -10,9 +10,11 @@ This repo includes three different custom targets you can use based on the `NUCL
 
 ## How to set up this project:
 
-1. Clone it to your machine.  Don't forget to use `--recursive` to clone the submodules: `git clone --recursive https://github.com/mbed-ce/mbed-ce-custom-targets.git`
+1. Clone it to your machine.  Don't forget to use `--recursive` to clone the submodules: `git clone --recursive https://github.com/mbed-ce/mbed-ce-custom-targets.git`and update MbedOS with `git submodule update --remote mbed-os` (run this command from the mbed-ce-custom-targets folder)
 2. Set up the GNU ARM toolchain (and other programs) on your machine using [the toolchain setup guide](https://github.com/mbed-ce/mbed-os/wiki/Toolchain-Setup-Guide).
-3. Set up the CMake project for editing.  Use one of the target names listed above.  We have three ways to do this:
+3. Set up the CMake project for editing. We have three ways to do this:
     - On the [command line](https://github.com/mbed-ce/mbed-os/wiki/Project-Setup:-Command-Line)
     - Using the [CLion IDE](https://github.com/mbed-ce/mbed-os/wiki/Project-Setup:-CLion)
     - Using the [VS Code IDE](https://github.com/mbed-ce/mbed-os/wiki/Project-Setup:-VS-Code)
+4. Use one of the target names listed above and choose an [upload method](https://github.com/mbed-ce/mbed-os/wiki/Upload-Methods) according to your requirements. Default settings is target L452RE_SIMPLE and upload method STM32CUBE.
+   
