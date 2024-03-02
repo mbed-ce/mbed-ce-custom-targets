@@ -23,7 +23,7 @@ set(MBED_APP_JSON_PATH mbed_app.json5)
     - use default expected path for custom targets upload methods where you create your own config
       MY_PROJECT/custom_targets/upload_method_cfg
     - of course you can do it by yourself directly via cmake in this file
-   Fro more visit https://github.com/mbed-ce/mbed-os/wiki/Upload-Methods ]]
+   For more visit https://github.com/mbed-ce/mbed-os/wiki/Upload-Methods ]]
    
 ### End of block
 ######################################################################################################
@@ -35,7 +35,7 @@ include(mbed-os/tools/cmake/app.cmake)
 ### Block of including project folders
 
 #[[ If using a custom target, the subdirectory containing the custom target must be included before 
-    the mbed-os subdir, otherwise should be the next line commented]]
+    the mbed-os subdir, otherwise the next line should be commented]]
 add_subdirectory(custom_targets)
 
 ###--------------------------------------------------------------------------------------------------
