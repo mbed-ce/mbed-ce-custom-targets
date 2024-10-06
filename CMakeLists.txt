@@ -52,22 +52,25 @@ add_subdirectory(mbed-os)
 ### Set up your project name (necessary everytime)
 project(mbed-ce-custom-targets)
 
-
 ### add executable (necessary everytime)
-add_executable(main main.cpp)
+add_executable(${CMAKE_PROJECT_NAME} main.cpp)
 
 ### Set post build (necessary everytime)
-mbed_set_post_build(main)
+mbed_set_post_build(${CMAKE_PROJECT_NAME})
+#[[Or in case of custom linker script which should be placed like this
+   directory PROJECT_NAME/custom_targets/MBED_TARGET/MBED_TARGET.ld]]
+#mbed_set_post_build(${CMAKE_PROJECT_NAME}  ${CMAKE_SOURCE_DIR}/custom_targets/${MBED_TARGET}/${MBED_TARGET}.ld)
 
 ######################################################################################################
 ### Link libraries block
-#[[For more about this configuraion visit wiki page MbedOS-configuration ]]
+#[[For more about this configuraion visit wiki page MbedOS-configuration
+https://github.com/mbed-ce/mbed-os/wiki/MbedOS-configuration#configuration-via-cmake-files]]
 
 #[[link MbedOS and its libraries (necessary everytime)]]
-target_link_libraries(main  mbed-os) 
+target_link_libraries(${CMAKE_PROJECT_NAME}  mbed-os) 
 
 ### link user library (if needed)
-#target_link_libraries(main YourLibrary) 
+#target_link_libraries(${CMAKE_PROJECT_NAME} YourLibrary) 
 
 ### End of block
 ######################################################################################################
