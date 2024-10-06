@@ -29,3 +29,13 @@ board:
         # - target specific: STLINK, STM32CUBE, LINKSERVER, PICOTOOL, ARDUINO_BOSSAC
         # For more visit - https://github.com/mbed-ce/mbed-os/wiki/Upload-Methods#upload-method-list
         UPLOAD_METHOD: STM32CUBE
+    L452RE_CUSTOM_PINMAP:
+      short: L452RE_CUSTOM_PINMAP
+      settings:
+        MBED_TARGET: L452RE_CUSTOM_PINMAP
+        UPLOAD_METHOD: STM32CUBE
+    L452RE_CUSTOM_CLOCK:
+      short: L452RE_CUSTOM_CLOCK
+      settings:
+        MBED_TARGET: L452RE_CUSTOM_CLOCK
+        UPLOAD_METHOD: STM32CUBE
