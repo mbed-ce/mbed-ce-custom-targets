@@ -29,6 +29,8 @@
     // Also note that you should NOT specify a device_name, as that is only used for Mbed-internal targets
     // to fetch the memory bank information.
     "memory_banks": {
+
+          // Internal flash bank.  Size 256k, start address 0x08000000
           "IROM1": {
               "access": {
                   "execute": true,
@@ -44,6 +46,10 @@
               "start": 0x08000000,
               "startup": true
           },
+
+          // Internal RAM bank 1.  Size 128k, start address 0x20000000.
+          // Note: Important to list this one first, because the bank listed first will become bank 0, and this
+          // target has a legacy linker script that expects that this bank is bank 0 instead of requesting it by name.
           "IRAM1": {
               "access": {
                   "execute": false,
@@ -59,6 +65,10 @@
               "start": 0x20000000,
               "startup": false
           },
+
+          // Internal RAM bank 2.  Size 32k, start address 0x10000000 (though it is also aliased at 0x20020000).
+          // Note: Important to list this one first, because the bank listed first will become bank 0, and this
+          // target has a legacy linker script that expects that this bank is bank 0 instead of requesting it by name.
           "IRAM2": {
               "access": {
                   "execute": false,
