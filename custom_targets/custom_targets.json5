@@ -1,15 +1,79 @@
 {
+  // This target clones the existing NUCLEO_L452RE_P target without making
+  // any changes other than an extra define.
   "L452RE_SIMPLE": {
     "inherits": ["NUCLEO_L452RE_P"],
     "macros_add": ["MY_CUSTOM_DEFINE=5"],
     "device_name": "STM32L452RETx"
   },
+
+  // This target extends MCU_STM32L452xE and defines a custom pinmap.
   "L452RE_CUSTOM_PINMAP": {
     "inherits": ["MCU_STM32L452xE"],
     "device_name": "STM32L452RETx"
   },
+
+  // This target extends NUCLEO_L452RE_P and defines a custom clock configuration.
   "L452RE_CUSTOM_CLOCK": {
     "inherits": ["NUCLEO_L452RE_P"],
     "device_name": "STM32L452RETx"
+  },
+
+  // This target extends NUCLEO_L452RE_P but remaps the memory for a different chip part number.
+  // This assumes we are using the -C variant of the chip with half the flash space.
+  "L452RC_CUSTOM_MEMORY_MAP": {
+    "inherits": ["NUCLEO_L452RE_P"],
+
+    // When using a MCU name whose data is not included with Mbed, it is mandatory to provide a
+    // memory_banks section.  This provides information about the RAM and flash banks to Mbed.
+    // Also note that you should NOT specify a device_name, as that is only used for Mbed-internal targets
+    // to fetch the memory bank information.
+    "memory_banks": {
+          "IROM1": {
+              "access": {
+                  "execute": true,
+                  "non_secure": false,
+                  "non_secure_callable": false,
+                  "peripheral": false,
+                  "read": true,
+                  "secure": false,
+                  "write": false
+              },
+              "default": true,
+              "size": 0x40000,
+              "start": 0x08000000,
+              "startup": true
+          },
+          "IRAM1": {
+              "access": {
+                  "execute": false,
+                  "non_secure": false,
+                  "non_secure_callable": false,
+                  "peripheral": false,
+                  "read": true,
+                  "secure": false,
+                  "write": true
+              },
+              "default": true,
+              "size": 0x20000,
+              "start": 0x20000000,
+              "startup": false
+          },
+          "IRAM2": {
+              "access": {
+                  "execute": false,
+                  "non_secure": false,
+                  "non_secure_callable": false,
+                  "peripheral": false,
+                  "read": true,
+                  "secure": false,
+                  "write": true
+              },
+              "default": false,
+              "size": 0x8000,
+              "start": 0x10000000,
+              "startup": false
+          }
+    }
   }
 }
