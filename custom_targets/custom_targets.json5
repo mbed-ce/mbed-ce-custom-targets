@@ -67,8 +67,6 @@
           },
 
           // Internal RAM bank 2.  Size 32k, start address 0x10000000 (though it is also aliased at 0x20020000).
-          // Note: Important to list this one first, because the bank listed first will become bank 0, and this
-          // target has a legacy linker script that expects that this bank is bank 0 instead of requesting it by name.
           "IRAM2": {
               "access": {
                   "execute": false,
