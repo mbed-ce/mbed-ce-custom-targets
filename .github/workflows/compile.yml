@@ -16,19 +16,21 @@ jobs:
           - L452RE_SIMPLE
           - L452RE_CUSTOM_PINMAP
           - L452RE_CUSTOM_CLOCK
+          - L452RC_CUSTOM_MEMORY_MAP
     
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      - name: Install Python dependencies
+      - name: Install python3-venv
         run: |
-            python3 -m pip install -r mbed-os/tools/requirements.txt
+          apt-get update
+          apt-get install -y python3-venv
 
       - name: Build project for ${{ matrix.mbed_target }}
         run: |
             mkdir build && cd build
             cmake .. -GNinja -DUPLOAD_METHOD=NONE -DMBED_TARGET=${{ matrix.mbed_target }} 
-            ninja mbed-os # need to build mbed-os explicitly, or it will not be compiled because there are no executables that use it.
+            ninja

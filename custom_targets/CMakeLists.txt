@@ -66,3 +66,10 @@ endif()
 add_library(mbed-l452re-custom-clock INTERFACE)
 target_sources(mbed-l452re-custom-clock INTERFACE L452RE_CUSTOM_CLOCK/system_clock.c)
 target_link_libraries(mbed-l452re-custom-clock INTERFACE mbed-nucleo-l452re-p)
+
+# Part 4: L452RC_CUSTOM_MEMORY_MAP --------------------------------------------------------------
+
+# As in part 1, we just create this target as an empty target that inherits from the NUCLEO_L452RE_P target.
+add_library(mbed-l452rc-custom-memory-map INTERFACE)
+target_link_libraries(mbed-l452rc-custom-memory-map INTERFACE mbed-nucleo-l452re-p)
+
